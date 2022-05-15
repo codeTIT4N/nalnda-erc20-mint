@@ -450,6 +450,13 @@ function App() {
         <br />
         <input type="submit" value="Mint Tokens" className='btn btn-success' />
       </form>
+
+      <hr />
+      <h4>Contract addresses for Nalnda ETC20 Token</h4>
+      <h5>Mumbai Matic: {addressMumbai}</h5>
+      <h5>Rinkeby: {addressRinkeby}</h5>
+      <h5>Ropsten: {addressRopsten}</h5>
+      <hr />
     </div>
   );
 }

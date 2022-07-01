@@ -344,9 +344,9 @@ const abi = [
     "type": "function"
   }
 ];
-const addressRinkeby = "0x16B05d9d5AB2e1369faFDEAd000770C1F2621841";
-const addressRopsten = "0x4e965B1F0A61C06f17312E5989CAB18d8E33755b";
-const addressMumbai = "0x1Dd5Ee08A759059E0E7734C9d2e4FEde0eD5F865";
+// const addressRinkeby = "0x16B05d9d5AB2e1369faFDEAd000770C1F2621841";
+// const addressRopsten = "0x4e965B1F0A61C06f17312E5989CAB18d8E33755b";
+const addressMumbai = "0xfEc014B41506430F055ceff9A007e690D409b304";
 function App() {
 
   const [loader, setLoader] = useState(false);
@@ -402,16 +402,9 @@ function App() {
     const signer = provider.getSigner()
     let _address = null;
     if (chainId != null) {
-      if (chainId == 4)
-        _address = addressRinkeby;
-      else if (chainId == 3)
-        _address = addressRopsten;
-      else if (chainId == 80001)
-        _address = addressMumbai;
-      else
-        alert("wrong network!!! Please switch to mumbai, rinkeby or ropsten")
+      _address = addressMumbai;
     } else {
-      alert("wrong network!!! Please switch to mumbai, rinkeby or ropsten")
+      alert("wrong network!!! Please switch to mumbai")
     }
     try {
       let _contract = new ethers.Contract(_address, abi, signer);
@@ -427,6 +420,9 @@ function App() {
   if (loader) {
     return <h1 style={{ textAlign: 'center' }}>loading...</h1>
   }
+  if (chainId != '80001') {
+    return <h1 style={{ textAlign: 'center' }}>Please switch network to mumbai matic</h1>
+  }
   return (
     <div className="App">
       <nav className="navbar navbar-light bg-light">
@@ -441,7 +437,7 @@ function App() {
           </form>
         </div>
       </nav>
-      <h1 style={{ textAlign: 'center' }}>Mint NALNDA Tokens</h1>
+      <h1 style={{ textAlign: 'center' }}>Mint NALNDA USDC Test Tokens</h1>
       <br />
       <form style={{ textAlign: 'center' }} onSubmit={handleSubmit}>
         <input style={{ textAlign: 'center' }} className='form-control' type="number" step="any" placeholder="Enter amount" min='0' required onChange={(e) => {
@@ -452,10 +448,8 @@ function App() {
       </form>
 
       <hr />
-      <h4>Contract addresses for Nalnda ETC20 Token</h4>
-      <h5>Mumbai Matic: {addressMumbai}</h5>
-      <h5>Rinkeby: {addressRinkeby}</h5>
-      <h5>Ropsten: {addressRopsten}</h5>
+      <h4>Contract addresses for Nalnda USDC Test Tokens</h4>
+      <h5>On Mumbai Matic: {addressMumbai}</h5>
       <hr />
     </div>
   );

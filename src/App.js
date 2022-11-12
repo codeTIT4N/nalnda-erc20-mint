@@ -359,6 +359,7 @@ function App() {
     loadWeb3();
   }, [])
 
+  // as it is
   useEffect(() => {
     window.ethereum.on('chainChanged', async function (accounts) {
       window.location.reload()
@@ -376,6 +377,7 @@ function App() {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const network = await provider.getNetwork();
+      // find chain id
       setChainId(network.chainId)
       const signer = provider.getSigner()
       setAddress(await signer.getAddress())
@@ -420,6 +422,7 @@ function App() {
   if (loader) {
     return <h1 style={{ textAlign: 'center' }}>loading...</h1>
   }
+  // make sure you are on the right chain
   if (chainId != '80001') {
     return <h1 style={{ textAlign: 'center' }}>Please switch network to mumbai matic</h1>
   }
